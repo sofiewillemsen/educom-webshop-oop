@@ -8,7 +8,6 @@ class BasicDoc extends HtmlDoc
     {
         $this->title = $data['page'];
         $this->menuItems = $data['menuItems'];
-        $this->content = $data['content'];
     }
 
     protected function showHeader() 
@@ -31,8 +30,7 @@ class BasicDoc extends HtmlDoc
 
     protected function showContent()
     {
-        echo "<h1>".$this->title."</h1>
-        <p>".$this->content."</p>".PHP_EOL;
+        echo "<h1>".$this->title."</h1>".PHP_EOL;
     }
 
     protected function showFooter() 
