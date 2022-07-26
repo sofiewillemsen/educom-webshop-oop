@@ -13,7 +13,8 @@ class HtmlDoc
         private   function beginHead()   {
             echo "<head>"; } 
         protected function headContent() {
-            echo "<title>".$this->title."</title>"; } 
+            echo '<title>'.$this->title.'</title>
+            <link rel="stylesheet" href="/educom-webshop-oop/css/stylesheet.css">'; } 
         private   function endHead()     {
             echo "</head>"; } 
         private   function beginBody()     {

@@ -7,7 +7,6 @@ class BasicDoc extends HtmlDoc
     public function __construct($data)
     {
         $this->title = $data['page'];
-        $this->menuItems = $data['menuItems'];
     }
 
     protected function showHeader() 
@@ -17,10 +16,12 @@ class BasicDoc extends HtmlDoc
 
     protected function showMenu()
     {       
+        $menuItems = array('Home', 'About', 'Contact', 'Webshop', 'Register', 'Login');
+
                echo '<p>
                <ul class="nav">';
             
-                  foreach ($this->menuItems as $value){
+                  foreach ($menuItems as $value){
                   echo '<li><a href="index.php?page='.$value.'">'.$value.'</a></li>'.PHP_EOL;
                   }
             
