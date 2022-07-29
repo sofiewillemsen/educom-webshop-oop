@@ -26,66 +26,37 @@ class Controller
      { 
          $this->response = $this->request; // getoond == gevraagd 
          if ($this->request['posted']) 
+        
          { 
-             switch ($this->request['page']) 
-             { 
-                case 'contact':
-                    // Dit werkt nog niet
-                    require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/validate_form.php');
-                    $validatecontact = new ValidateForm;
-                    $result = $validatecontact->checkFields($data['arr_fields']);
-                    if ($result['ok'])
-                    { 
-                        echo 'Bedankt voor uw bericht!';
-                    }
-                    else
-                    {
-                        $this->response['page'] = 'contact';
-                    }
-                break;
-             } 
-         } 
-         else 
-         { 
-             switch ($this->request['page']) 
-             { 
-                case 'Home':
-                    $this->response['page'] = 'home';
-                break;
-                case 'About':
-                    $this->response['page'] = 'about';
-                break;
-                case 'Contact':
-                    $this->response['page'] = 'contact';
-                break;
-                case 'Login':
-                    $this->response['page'] = 'login';
-                break;
-                case 'Register':
-                    $this->response['page'] = 'register';
-                break;
-                case 'Webshop':
-                    $this->response['page'] = 'webshop';
-                break;
-                case 'detail':
-                    $this->response['page'] = 'detail';
-                break;
-                default:
-                    $this->response['page'] = 'home';
-                break;
-             } 
-         } 
+          switch ($this->request['page']) 
+            { 
+               case 'contact':
+                require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/validate_form.php');
+                require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/get_page_info.php');
+                $contactdata = new GetData();
+                $this->response['data'] = $contactdata->contactData();
+                $validatecontact = new ValidateForm($this->response['data']);
+                $this->response['data']['postresult'] = $validatecontact->checkFields();
+                var_dump($this->response['data']['postresult']);
+                if ($this->response['data']['postresult']['ok'])
+                { 
+                  $this->response['page'] = 'thanks';
+                }
+            } 
+        }
      } 
       
      private function showResponse() 
      { 
+
          switch ($this->response['page']) 
          { 
             case 'home':
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/home_doc.php');
                 $data = array
                    (
-                    'page' => 'Home'
+                    'page' => 'home',
+                    'title' => 'home'
                    );
                 $home = new HomeDoc($data);
                 $home->show();
@@ -94,7 +65,8 @@ class Controller
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/about_doc.php');
                 $data = array
                     (
-                     'page' => 'About' 
+                     'page' => 'about',
+                     'title' => 'about'
                      );
                 $about = new AboutDoc($data);
                 $about->show(); 
@@ -102,10 +74,24 @@ class Controller
             case 'contact':
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/forms_doc.php');
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/get_page_info.php');
-                $contactdata = new GetData();
-                $data = $contactdata->contactData();
-                $contact = new FormsDoc($data);
-                $contact->show();
+                if (isset($this->response['data']['postresult']))
+                {
+                    $contact = new FormsDoc($this->response['data']);
+                    $contact->show();
+                }
+                else
+                {
+                    $contactdata = new GetData();
+                    $this->response['data'] = $contactdata->contactData();
+                    $contact = new FormsDoc($this->response['data']);
+                    $contact->show();
+                }
+            break;
+            case 'thanks':
+                require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/thanks_doc.php');
+                var_dump($this->response['data']['postresult']);
+                $thanks = new ThanksDoc($this->response['data']['postresult']);
+                $thanks->show();
             break;
             case 'login':
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/forms_doc.php');

@@ -8,7 +8,7 @@ class GetData
   }
 
    public function contactData() {
-    $this->data['page'] = 'Contact';
+    $this->data['page'] = 'contact';
     $this->data['intro'] = 'Voer hier uw contactgegevens in.';
     $this->data['submitcaption'] = 'Versturen';
     $this->data['action'] = 'index.php';
@@ -22,7 +22,7 @@ class GetData
                'label'=> 'Email',
                'placeholder' => 'Email',
               ),  
-     'phone'   => array('type' => 'tel',
+     'telefoon'   => array('type' => 'tel',
                'label'=> 'Telefoonnummer',
                'placeholder' => 'Telefoonnummer',
               ),  
@@ -32,13 +32,13 @@ class GetData
                   'Email' => 'email',
                   'Telefoon' => 'telefoon'),
               ),        
-     'message'   => array('type' => 'textarea',
+     'bericht'   => array('type' => 'textarea',
                'label'=> 'Bericht',
                'placeholder' => 'Bericht',
               )   
             );
     
-    return $this->data;
+    return $data = $this->data;
     
     }
  
@@ -46,7 +46,7 @@ class GetData
   {
     $this->data = array
                 (
-                'page' => 'Login', 
+                'page' => 'login', 
                 'intro' => 'Voor uw email en wachtwoord in om in te loggen.',
                 'submitcaption' => 'Login',
                 'arr_fields' => array
@@ -69,7 +69,7 @@ class GetData
   {
     $this->data = array
                 (
-                'page' => 'Register', 
+                'page' => 'register', 
                 'intro' => 'Registreer met uw naam, email en wachtwoord.',
                 'submitcaption' => 'Login',
                 'arr_fields' => array
@@ -100,7 +100,7 @@ class GetData
   public function webshopData(){
     $this->data = array
     (
-    'page' => 'Webshop', 
+    'page' => 'webshop', 
     'intro' => 'Dit is mijn webshop met vintage en tweedehands kleding.'
     );
     return $this->data;

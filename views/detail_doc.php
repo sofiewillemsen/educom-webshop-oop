@@ -22,7 +22,7 @@ class DetailDoc extends BasicDoc
       .'
       </h1>
       <p>
-      <img src="/educom-webshop-database/Images/'
+      <img src="/educom-webshop-oop/Images/'
       .$product['picture']
       .'" alt="'
       .$product['picture']

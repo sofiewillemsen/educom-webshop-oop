@@ -20,7 +20,7 @@ class ProductsDoc extends BasicDoc
             foreach ($this->products as $product)
              {
                  echo '<tr><td>
-                 <img src="/educom-webshop-database/Images/'
+                 <img src="/educom-webshop-oop/Images/'
                  .$product['picture']
                 .'" alt="'
                 .$product['picture']

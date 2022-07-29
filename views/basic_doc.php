@@ -6,7 +6,15 @@ class BasicDoc extends HtmlDoc
 
     public function __construct($data)
     {
-        $this->title = $data['page'];
+        $this->title = $data['title'];
+        if (isset($data['text']))
+        {
+            $this->text = $data['text'];
+        }
+        else
+        {
+            $this->text = '';
+        }
     }
 
     protected function showHeader() 
@@ -16,7 +24,7 @@ class BasicDoc extends HtmlDoc
 
     protected function showMenu()
     {       
-        $menuItems = array('Home', 'About', 'Contact', 'Webshop', 'Register', 'Login');
+        $menuItems = array('home', 'about', 'contact', 'webshop', 'register', 'login');
 
                echo '<p>
                <ul class="nav">';
@@ -31,7 +39,7 @@ class BasicDoc extends HtmlDoc
 
     protected function showContent()
     {
-        echo "<h1>".$this->title."</h1>".PHP_EOL;
+        echo "<h1>".$this->title."</h1><p>".$this->text."</p>".PHP_EOL;
     }
 
     protected function showFooter() 

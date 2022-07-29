@@ -5,11 +5,16 @@ body {
   color: grey;
 }
 
+h1 {
+  text-transform: capitalize;
+}
+
 p {
   font-size: 12px;
 }
 
 header {
+  text-transform: uppercase;
   text-align: center;
   text-align: middle;
   background-color: lightpink;
@@ -29,6 +34,7 @@ header {
 }
 
 ul.nav {
+  text-transform: capitalize;
   list-style-type: none;
   text-align: center;
   margin: 1px;

@@ -7,7 +7,7 @@ class AboutDoc extends BasicDoc
     protected function showContent()
     {
     echo 
-    '<h1>'.$this->title.'</h1>
+    '<h1>About</h1>
     <p>
     Ik ben Sofie, ik ben 32 jaar en ik heb een achtergrond in de antropologie en de journalistiek. 
     </p>
