@@ -2,7 +2,6 @@
 
 class ValidateForm
     {
-
    public function checkFields($arr_fieldinfo)
    {
     $result = array();

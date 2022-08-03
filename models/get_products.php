@@ -16,8 +16,6 @@ class GetProducts
          $this->products = array(); 
      }  
      
-
-
     public function getProducts(){
     if ($this->result->num_rows > 0) {
       // output data of each row

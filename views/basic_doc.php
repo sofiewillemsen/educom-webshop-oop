@@ -24,15 +24,29 @@ class BasicDoc extends HtmlDoc
 
     protected function showMenu()
     {       
+        
+        if (isset($_SESSION["username"]))
+        {
+        $menuItems = array('home', 'about', 'contact', 'webshop', 'register', 'logout', 'cart');
+        }
+        else
+        {
         $menuItems = array('home', 'about', 'contact', 'webshop', 'register', 'login');
-
+        }
                echo '<p>
                <ul class="nav">';
-            
-                  foreach ($menuItems as $value){
-                  echo '<li><a href="index.php?page='.$value.'">'.$value.'</a></li>'.PHP_EOL;
+               foreach($menuItems as $value)
+               {
+                  switch($value){
+                    case 'logout':
+                        echo '<li><a href="index.php?page='.$value.'">'.$value.' '.$_SESSION['username'].'</a></li>'.PHP_EOL;
+                    break;
+                    default:
+                        echo '<li><a href="index.php?page='.$value.'">'.$value.'</a></li>'.PHP_EOL;
+                    
+                    break;
                   }
-            
+                } 
                echo '</ul></p>';
             
     }

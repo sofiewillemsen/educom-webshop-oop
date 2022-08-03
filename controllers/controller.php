@@ -8,7 +8,7 @@ class Controller
       
      public function handleRequest() 
      { 
-        session_start();
+         session_start();
          $this->getRequest(); 
          $this->validateRequest(); 
          $this->showResponse(); 
@@ -79,7 +79,6 @@ class Controller
                  break;
                 
                 case 'register':
-                 
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/oud/data_access_layer.php');
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/validate.php');
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/get_page_info.php');
@@ -111,7 +110,21 @@ class Controller
                         $this->response['page'] = 'login';
                     }
                 }
-                 break;
+                break;
+                case 'webshop':
+                    require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/webshop_model.php');
+                    $webshop = new WebshopModel();
+                    $webshop->addToCart();
+                    $this->response['page'] = 'cart';
+                break;
+                
+                case 'cart':
+                    require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/oud/data_access_layer.php');
+                    writeToOrders();
+                    writeToOrdersRegel();
+                    $_SESSION['cart_products'] = NULL;
+                    $this->response['page'] = 'cart';
+                break;
             } 
         }
      } 
@@ -175,6 +188,11 @@ class Controller
                     $login->show();
                 }
             break;
+            case 'logout':
+                session_destroy();
+                $_SESSION['username'] = NULL;
+                header('location://localhost/educom-webshop-oop/index.php?page=home');
+            break;
             case 'register':
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/forms_doc.php');
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/get_page_info.php');
@@ -201,9 +219,15 @@ class Controller
             break;
             case 'detail':
                 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/detail_doc.php');
-                $data['page'] = 'detail';
-                $detail = new DetailDoc();
+                $this->response['data']['page'] = 'detail';
+                $detail = new DetailDoc($this->response['data']);
                 $detail->show();
+            break;
+            case 'cart':
+                require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/cart_doc.php');
+                $this->response['data']['page'] = 'cart';
+                $cart = new CartDoc($this->response['data']);
+                $cart->show();
             break;
          } 
      } 

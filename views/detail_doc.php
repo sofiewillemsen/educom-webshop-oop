@@ -37,7 +37,18 @@ class DetailDoc extends BasicDoc
       .$product['price']
       .',-';
       
-       echo '<p><a href="index.php?page=login">Log in</a> om te bestellen.</p>';
+      if (isset($_SESSION["username"]))
+            {
+                echo '<form action="index.php" method="POST" > 
+                <input type="hidden" name="page" value="webshop" />
+                <input type="hidden" name="id" value="'.$product['id'].'">
+                 <br><button type="submit" value="submit">Koop</button><br><br><br>
+                </form></td>'.PHP_EOL;
+            }
+            else
+            {
+                echo '</td><td><a href="index.php?page=login">Log in</a> om te bestellen.</td>'.PHP_EOL;
+            }
    }
 }
 
