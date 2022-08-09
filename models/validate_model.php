@@ -64,45 +64,5 @@ class ValidateForm
            }
        return $result;
    }
-
-   function authenticateUser($email, $password)
-    {
-     require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/oud/data_access_layer.php');
-     $user = findUserByEmail($email);
- 
-         if ($user == null) 
-         {
-         return false;
-         }
-         if ($user['password']!== $password) 
-         {
-         return false;
-         }
- 
-     return $user;
- 
-     }   
-
-    
-    public function checkRegisterUsers($email)
-    {
-        require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/oud/data_access_layer.php');
-        $user = findUserByEmail($email);
-          
-          if (isset($user)) {
-            return false;
-          }
-          return true;
-    }
-      
-    public function checkRegisterPassword($password, $password2){
-      
-        if ($password !== $password2){
-          return false;
-          
-        }
-        return true;
-      }
-
 }
 ?>

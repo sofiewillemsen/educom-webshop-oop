@@ -1,7 +1,7 @@
 <?php
 
 require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/views/basic_doc.php');
-require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/get_products.php');
+require_once('/Applications/XAMPP/htdocs/educom-webshop-oop/models/crud.php');
 
 class ProductsDoc extends BasicDoc
 {
@@ -9,8 +9,9 @@ class ProductsDoc extends BasicDoc
     {
         $this->title = $data['page'];
         $this->intro = $data ['intro'];
-        $this->products_from_db = new GetProducts;
-        $this->products = $this->products_from_db->getProducts();
+        $this->sql = "SELECT id, name, price, description, picture FROM products";
+        $this->crud = new Crud;
+        $this->products = $this->crud->readMultiRows($this->sql, []);
     }
 
     protected function showContent()

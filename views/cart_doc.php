@@ -10,6 +10,7 @@ class CartDoc extends BasicDoc
 
     function showContent()
     {
+        echo '<h1>Cart</h1>';
 
     if (isset($_SESSION['cart_products']))
         {
@@ -18,7 +19,6 @@ class CartDoc extends BasicDoc
         $cart = new WebshopModel();
         $totalPrice = $cart->totalPrice();
         $_SESSION['ordernumber'] = createOrderNumber();
-        echo '<h1>Cart</h1>';
         foreach ($_SESSION['cart_products'] as $product)
             {
     

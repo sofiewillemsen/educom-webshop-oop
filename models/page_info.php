@@ -1,35 +1,33 @@
 <?php
 
-class GetData
+class PageInfo
 {
-
-  public function __construct(){
-    $data = [];
-  }
 
    public function getData(string $page) {
   
+    $data = [];
+    
     switch ($page)
     {
       case 'home':
-        $this->data = array
+        $data = array
                    (
                     'page' => 'home',
                     'title' => 'home'
                    );
       case 'about':
-        $this->data = array
+        $data = array
                     (
                      'page' => 'about',
                      'title' => 'about'
                      );
 
       case 'contact':
-        $this->data['page'] = 'contact';
-        $this->data['intro'] = 'Voer hier uw contactgegevens in.';
-        $this->data['submitcaption'] = 'Versturen';
-        $this->data['action'] = 'index.php';
-        $this->data['arr_fields'] = array
+        $data['page'] = 'contact';
+        $data['intro'] = 'Voer hier uw contactgegevens in.';
+        $data['submitcaption'] = 'Versturen';
+        $data['action'] = 'index.php';
+        $data['arr_fields'] = array
         (
         'naam'    => array('type' => 'text',    
                   'label'=> 'Naam',
@@ -57,7 +55,7 @@ class GetData
         break;
       
       case 'login':
-        $this->data = array
+        $data = array
                     (
                     'page' => 'login', 
                     'intro' => 'Voor uw email en wachtwoord in om in te loggen.',
@@ -78,7 +76,7 @@ class GetData
         break;
 
         case 'register':
-          $this->data = array
+          $data = array
                     (
                     'page' => 'register', 
                     'intro' => 'Registreer met uw naam, email en wachtwoord.',
@@ -107,7 +105,7 @@ class GetData
           break;
 
         case 'webshop':
-          $this->data = array
+          $data = array
           (
           'page' => 'webshop', 
           'intro' => 'Dit is mijn webshop met vintage en tweedehands kleding.'
@@ -115,7 +113,7 @@ class GetData
         break;
 
       }
-      return $this->data;
+      return $data;
     }
 }
 
